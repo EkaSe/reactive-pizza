@@ -1,0 +1,75 @@
+{
+  "pizzas": [
+    {
+      "id": 1,
+      "title": "Margarita",
+      "price": 8.5
+    },
+    {
+      "id": 2,
+      "title": "Hawaii",
+      "price": 13
+    },
+    {
+      "id": 3,
+      "title": "Pepperoni",
+      "price": 10.7
+    }
+  ],
+  "options": [
+    {
+      "id": 1,
+      "title": "Cheese sauce",
+      "price": 1
+    },
+    {
+      "id": 2,
+      "title": "Extra onion",
+      "price": 0.5
+    },
+    {
+      "id": 3,
+      "title": "Thin dough",
+      "price": 0
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "address": "Mountain ave, 136",
+      "pizzas": [
+        {
+          "id": 3,
+          "amount": 2,
+          "options": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "address": "",
+      "pizzas": [
+        {
+          "id": 1,
+          "title": "Margarita",
+          "price": 8.5,
+          "amount": 0
+        },
+        {
+          "id": 2,
+          "title": "Hawaii",
+          "price": 13,
+          "amount": 2
+        },
+        {
+          "id": 3,
+          "title": "Pepperoni",
+          "price": 10.7,
+          "amount": 1
+        }
+      ],
+      "id": 2
+    }
+  ]
+}
