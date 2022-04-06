@@ -1,0 +1,13 @@
+.button-with-icon {
+  width: 0.7em;
+  height: 0.7em;
+  padding: 0 2px;
+}
+
+.disabled {
+  color: lightgray;
+}
+
+.disabled svg {
+  fill: lightgray;
+}

@@ -17,7 +17,7 @@ function App() {
     if (!pizzas || pizzas.length === 0){      
       fetchPizzas();
     }
-  }, [true]);
+  }, []);
 
   const sendOrder = async () =>  {
     await createOrder({
