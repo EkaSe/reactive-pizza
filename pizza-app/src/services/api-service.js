@@ -24,7 +24,7 @@ export async function createOrder(address, pizzas) {
   const order = {
     address: address,
     pizzas: pizzas.map(item => { 
-      return {pizzaId: item.pizzaId, options: item.options.map(option => option.id), amount: item.amount}
+      return {pizzaId: item.pizza.id, options: item.options.map(option => option.id), amount: item.amount}
     })
   };
   const response = await fetch(`${ApiUrl}/orders`, {

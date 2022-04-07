@@ -33,9 +33,7 @@ export const PizzaListItem = (props) => {
             removeOption={() => setOptionEnabled(item.id, false)}/> 
         </div>)}
 
-      <IconButton 
-        onClick={addToCart} 
-        disabled={!props.options || !selectedOptions.some(option => option.isEnabled)}>
+      <IconButton onClick={addToCart} >
           Add to cart
       </IconButton>
     </div>
