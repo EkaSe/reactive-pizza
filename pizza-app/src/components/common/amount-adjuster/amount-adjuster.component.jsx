@@ -1,6 +1,6 @@
 import "./amount-adjuster.component.css";
-import {ReactComponent as MinusSvg} from '../../assets/minus-svgrepo-com.svg';
-import {ReactComponent as PlusSvg} from '../../assets/plus-svgrepo-com.svg';
+import {ReactComponent as MinusSvg} from '../../../assets/minus-svgrepo-com.svg';
+import {ReactComponent as PlusSvg} from '../../../assets/plus-svgrepo-com.svg';
 import { IconButton } from "../icon-button/icon-button.component";
 
 export const AmountAdjuster = (props) => {

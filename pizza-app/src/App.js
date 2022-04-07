@@ -1,17 +1,19 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import { createOrder, getPizzas } from './services/api-service';
-import { PizzaList } from './components/pizza-list/pizza-list.component'
-import { OrderDetails } from './components/order-details/order-details.component'
+import { getPizzas, getOptions } from './services/api-service';
+import { PizzaList } from './components/catalog/pizza-list/pizza-list.component';
+import { OrderPreview } from './components/shopping-cart/order-preview/order-preview.component';
+import { addToOrder, adjustOrderAmount } from './services/order-service/order-service'
 
 function App() {
-  const [pizzas, setPizzas] = useState([]);
-  const [address, setAddress] = useState("");
+  const [pizzas, setPizzas] = useState([]);  
+  const [options, setOptions] = useState([]); 
+  const [order, setOrder] = useState([]);
 
   useEffect(() => {
     async function fetchPizzas() {        
       const result = await getPizzas();
-      setPizzas(result.map(item => { return {...item, amount: 0}}));      
+      setPizzas(result);      
     };
 
     if (!pizzas || pizzas.length === 0){      
@@ -19,26 +21,40 @@ function App() {
     }
   }, []);
 
-  const sendOrder = async () =>  {
-    await createOrder({
-      address: address, 
-      pizzas: pizzas.filter(item => item.amount > 0)
-    });
-    setAddress("");
-    setPizzas(items => items.map(item => { return {...item, amount: 0}}));
+  useEffect(() => {
+    async function fetchOptions() {        
+      const result = await getOptions();
+      setOptions(result);      
+    };
+
+    if (!options || options.length === 0){      
+      fetchOptions();
+    }
+  }, []);
+
+  const resetOrder = () => {
+    setOrder([]);
   }
 
-  const updateOrder = (pizzaId, increment) =>  {
-    setPizzas(pizzas
-      .map(item => item.id === pizzaId ? {...item, amount: item.amount + increment} : {...item}));
+  const updateOrder = (pizza, selectedOptions, increment) =>  {
+    setOrder(addToOrder(order, pizza, selectedOptions, increment));
+  }
+
+  const changeOrderAmount = (itemId, increment) =>  {
+    setOrder(adjustOrderAmount(order, itemId, increment));
   }
 
   return (
     <div className="App">
       <h1>Reactive Pizza</h1>
-      {pizzas && ( <PizzaList pizzas={pizzas} updateOrder={updateOrder}/> )}
-      {pizzas && ( <OrderDetails pizzas={pizzas.filter(item => item.amount > 0)} updateOrder={updateOrder}/> )}
-      <button onClick={sendOrder}>buy</button>
+      {pizzas && ( <PizzaList pizzas={pizzas} options={options} updateOrder={updateOrder}/> )}
+      {order && ( <OrderPreview
+        order={order}
+        pizzas={pizzas} 
+        options={options}
+        updateOrder={changeOrderAmount}
+        resetOrder={resetOrder}
+        /> )}
     </div>
   );
 }
