@@ -1,23 +1,23 @@
 import { IconButton } from "../../common/icon-button/icon-button.component";
 import { Option } from "../../common/option/option.component";
 import "./pizza-list-item.component.css";
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 export const PizzaListItem = (props) => {
   const [selectedOptions, setSelectedOptions] = useState(props.options.map(option => { 
     return {...option, isEnabled: false};
   }));
 
-  const setOptionEnabled = (optionId, isEnabled) => {
-    setSelectedOptions(selectedOptions.map(option => {
+  const setOptionEnabled = useCallback((optionId, isEnabled) => {
+    setSelectedOptions(options => options.map(option => {
       return (option.id === optionId) ? {...option, isEnabled: isEnabled} : option
     }));
-  }
+  }, [selectedOptions])
 
-  const addToCart = () => {
+  const addToCart = useCallback(() => {
     props.updateOrder(selectedOptions.filter(option => option.isEnabled));
     setSelectedOptions(props.options.map(option => { return {...option, isEnabled: false}}));
-  }
+  }, [selectedOptions])
 
   return (
     <div className="pizza-container">
