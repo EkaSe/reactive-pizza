@@ -4,6 +4,7 @@ import { getPizzas, getOptions } from './services/api-service';
 import { PizzaList } from './components/catalog/pizza-list/pizza-list.component';
 import { OrderPreview } from './components/shopping-cart/order-preview/order-preview.component';
 import { addToOrder, adjustOrderAmount } from './services/order-service/order-service'
+import { ReactComponent as PizzaSliceSvg } from './assets/pizza-slice.svg'
 
 function App() {
   const [pizzas, setPizzas] = useState([]);  
@@ -45,16 +46,26 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>Reactive Pizza</h1>
-      {pizzas && ( <PizzaList pizzas={pizzas} options={options} updateOrder={updateOrder}/> )}
-      {order && ( <OrderPreview
-        order={order}
-        pizzas={pizzas} 
-        options={options}
-        updateOrder={changeOrderAmount}
-        resetOrder={resetOrder}
-        /> )}
+    <div className="wrapper">
+      <div className="header">
+          <PizzaSliceSvg />
+          Reactive Pizza
+          <PizzaSliceSvg />
+      </div>
+      {pizzas && ( 
+        <div className="catalog">
+          <PizzaList pizzas={pizzas} options={options} updateOrder={updateOrder}/> 
+        </div>)}
+      {order && ( 
+        <div className="order"> 
+          <OrderPreview
+            order={order}
+            pizzas={pizzas} 
+            options={options}
+            updateOrder={changeOrderAmount}
+            resetOrder={resetOrder}
+          /> 
+        </div>)}
     </div>
   );
 }
