@@ -9,54 +9,54 @@ describe('Order service', () => {
   const orders = [
       {
         itemId: "1",
-        pizzaId: 1,
+        pizza: { id: 1 },
         options: [1, 2, 3],
         amount: 2
       },
       {
         itemId: "2",
-        pizzaId: 1,
+        pizza: { id: 1 },
         options: [1],
         amount: 2
       },
       {
         itemId: "3",
-        pizzaId: 2,
+        pizza: { id: 2 },
         amount: 2
       }
     ];
 
   it('finds order item', () => {  
-    const result = findOrderItem(orders, 1, [1]);
+    const result = findOrderItem(orders, { id: 1 }, [1]);
 
     expect(result).not.toBeNull();
     expect(result.itemId).toEqual("2");
   });
 
   it('returns undefined if finds no order item', () => {  
-    const result = findOrderItem(orders, 1, [1, 2]);
+    const result = findOrderItem(orders, { id: 1 }, [1, 2]);
     expect(result).toBeUndefined();
   });
 
   it('increments amount of the existing order item', () => {  
-    const result = addToOrder(orders, 1, [1], 1);
+    const result = addToOrder(orders, { id: 1 }, [1], 1);
 
     const expectedResult = [
       {
         itemId: "1",
-        pizzaId: 1,
+        pizza: { id: 1 },
         options: [1, 2, 3],
         amount: 2
       },
       {
         itemId: "2",
-        pizzaId: 1,
+        pizza: { id: 1 },
         options: [1],
         amount: 3
       },
       {
         itemId: "3",
-        pizzaId: 2,
+        pizza: { id: 2 },
         amount: 2
       }
     ];
@@ -64,29 +64,29 @@ describe('Order service', () => {
   });
 
   it('adds order item if not exists', () => {  
-    const result = addToOrder(orders, 1, [1, 2], 1);
+    const result = addToOrder(orders, { id: 1 }, [1, 2], 1);
 
     const expectedResult = [
       {
         itemId: "1",
-        pizzaId: 1,
+        pizza: { id: 1 },
         options: [1, 2, 3],
         amount: 2
       },
       {
         itemId: "2",
-        pizzaId: 1,
+        pizza: { id: 1 },
         options: [1],
         amount: 2
       },
       {
         itemId: "3",
-        pizzaId: 2,
+        pizza: { id: 2 },
         amount: 2
       },
       {
         itemId: "test-uuid",
-        pizzaId: 1,
+        pizza: { id: 1 },
         options: [1, 2],
         amount: 1
       },
@@ -96,18 +96,18 @@ describe('Order service', () => {
   });
 
   it('removes order item if reduced to 0', () => {  
-    const result = addToOrder(orders, 1, [1], -2);
+    const result = addToOrder(orders, { id: 1 }, [1], -2);
 
     const expectedResult = [
       {
         itemId: "1",
-        pizzaId: 1,
+        pizza: { id: 1 },
         options: [1, 2, 3],
         amount: 2
       },
       {
         itemId: "3",
-        pizzaId: 2,
+        pizza: { id: 2 },
         amount: 2
       }
     ];

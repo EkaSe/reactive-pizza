@@ -5,6 +5,13 @@ import '@testing-library/jest-dom/extend-expect';
 
 describe('Amount Adjuster component', () => {
   let container = null;
+
+  beforeAll(() => {
+    // Silence the console to avoid littering with "Warning: ReactDOM.render is no longer supported in React 18."
+    // Updating to createRoot approach causes circular dependency issue https://github.com/facebook/jest/issues/10577
+    jest.spyOn(console, "error").mockImplementation();
+  });
+
   beforeEach(() => {
     container = document.createElement("div");
     document.body.appendChild(container);

@@ -5,6 +5,12 @@ import '@testing-library/jest-dom/extend-expect';
 
 describe('Option component', () => {
   let container = null;
+  beforeAll(() => {
+    // Silence the console to avoid littering with "Warning: ReactDOM.render is no longer supported in React 18."
+    // Updating to createRoot approach causes circular dependency issue https://github.com/facebook/jest/issues/10577
+    jest.spyOn(console, "error").mockImplementation();
+  });
+
   beforeEach(() => {
     container = document.createElement("div");
     document.body.appendChild(container);
@@ -26,6 +32,6 @@ describe('Option component', () => {
         removeOption={jest.fn()}/>, 
         container);
 
-    expect(container.getByTestId("options-container")).not.toBeNull();
+    expect(container.querySelector("[data-testid='option-container']")).not.toBeNull();
   });
 });
