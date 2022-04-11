@@ -1,12 +1,25 @@
-import {Pizza} from '../pizza/pizza.component';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Pizza } from '../pizza/pizza.component';
 
-export const OrderDetails = (props) => {
-  return (    
+export function OrderDetails({ pizzas, updateOrder }) {
+  return (
     <div>
       <h2>Order details: </h2>
-      {props.pizzas.map((item) => 
+      {pizzas.map((item) => (
         <div key={item.id}>
-          <Pizza data={item} updateOrder={(increment) => props.updateOrder(item.id, increment)}/> 
-        </div>)}
-  </div>);
+          <Pizza data={item} updateOrder={(increment) => updateOrder(item.id, increment)} />
+        </div>
+      ))}
+    </div>
+  );
 }
+
+OrderDetails.propTypes = {
+  pizzas: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    amount: PropTypes.string.isRequired,
+  })).isRequired,
+  updateOrder: PropTypes.func.isRequired,
+};
