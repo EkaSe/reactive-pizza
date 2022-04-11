@@ -2,18 +2,18 @@ import { OrderItem } from '../order-item/order-item.component';
 import { IconButton } from "../../common/icon-button/icon-button.component";
 import "./order-preview.component.css";
 import { createOrder } from '../../../services/api-service';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 export const OrderPreview = (props) => {
   const [address, setAddress] = useState("");
 
   const buyDisabled = !props.order || props.order.length === 0;
 
-  const sendOrder = async () =>  {
+  const sendOrder = useCallback(async () =>  {
     await createOrder(address, props.order);
     setAddress("");
     props.resetOrder();
-  };
+  }, [address, props.order, props.resetOrder]);
 
   return (    
     <div className="order-preview">
