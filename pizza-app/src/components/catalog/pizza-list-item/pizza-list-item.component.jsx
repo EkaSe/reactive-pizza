@@ -12,7 +12,7 @@ export const PizzaListItem = (props) => {
     setSelectedOptions(options => options.map(option => {
       return (option.id === optionId) ? {...option, isEnabled: isEnabled} : option
     }));
-  }, [selectedOptions])
+  });
 
   const addToCart = useCallback(() => {
     props.updateOrder(selectedOptions.filter(option => option.isEnabled));
