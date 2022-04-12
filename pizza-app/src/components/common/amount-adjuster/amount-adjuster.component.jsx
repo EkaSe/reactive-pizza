@@ -1,23 +1,40 @@
-import "./amount-adjuster.component.css";
-import {ReactComponent as MinusSvg} from '../../../assets/minus-svgrepo-com.svg';
-import {ReactComponent as PlusSvg} from '../../../assets/plus-svgrepo-com.svg';
-import { IconButton } from "../icon-button/icon-button.component";
+import React from 'react';
+import './amount-adjuster.component.css';
+import PropTypes from 'prop-types';
+import { ReactComponent as MinusSvg } from '../../../assets/minus-svgrepo-com.svg';
+import { ReactComponent as PlusSvg } from '../../../assets/plus-svgrepo-com.svg';
+import IconButton from '../icon-button/icon-button.component';
 
-export const AmountAdjuster = (props) => {
+export default function AmountAdjuster({
+  id, amount, onIncrement, onDecrement,
+}) {
   return (
     <div className="amount-adjuster">
       <IconButton
-        onClick={props.onDecrement} 
-        disabled={props.amount === 0} 
-        id={`${props.id}-minus`}>
-          <MinusSvg />
+        onClick={onDecrement}
+        disabled={amount === 0}
+        data-testid={`${id}-minus`}
+      >
+        <MinusSvg />
       </IconButton>
-      <span data-testid={`${props.id}-amount`}>{props.amount}</span>
+      <span data-testid={`${id}-amount`}>{amount}</span>
       <IconButton
-        onClick={props.onIncrement} 
-        id={`${props.id}-plus`}>
-          <PlusSvg />
+        onClick={onIncrement}
+        data-testid={`${id}-plus`}
+      >
+        <PlusSvg />
       </IconButton>
     </div>
   );
 }
+
+AmountAdjuster.defaultProps = {
+  id: 'amount-adjuster-test-id',
+};
+
+AmountAdjuster.propTypes = {
+  id: PropTypes.string,
+  amount: PropTypes.number.isRequired,
+  onIncrement: PropTypes.func.isRequired,
+  onDecrement: PropTypes.func.isRequired,
+};
