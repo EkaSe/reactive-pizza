@@ -1,21 +1,26 @@
-import { useCallback } from "react";
-import "./icon-button.component.css";
+import { useCallback } from 'react';
+import './icon-button.component.css';
 
-export const IconButton = (props) => {
+export default function IconButton({
+  id, onClick, disabled, children,
+}) {
   const handleClick = useCallback(() => {
-    if (!props.disabled) {
-      props.onClick();
+    if (!disabled) {
+      onClick();
     }
-  }, [props.disabled, props.onClick]);
+  }, [disabled, onClick]);
 
-  const className = `button-with-icon ${props.disabled ? 'disabled' : ''}`
-  
+  const className = `button-with-icon ${disabled ? 'disabled' : ''}`;
+
   return (
-    <div className={className}
-      onClick={handleClick} 
-      disabled={props.disabled} 
-      data-testid={props.id}>
-        {props.children}
-    </div>
+    <button
+      type="button"
+      className={className}
+      onClick={handleClick}
+      disabled={disabled}
+      data-testid={id}
+    >
+      {children}
+    </button>
   );
 }
