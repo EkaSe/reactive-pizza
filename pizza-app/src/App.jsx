@@ -11,16 +11,21 @@ function App() {
   const [order, setOrder] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchPizzas() {
       const fetchedPizzas = await getPizzas();
-
-      const fetchedOptions = await getOptions();
-
-      setOptions(fetchedOptions);
       setPizzas(fetchedPizzas);
     }
 
-    fetchData();
+    fetchPizzas();
+  }, []);
+
+  useEffect(() => {
+    async function fetchOptions() {
+      const fetchedOptions = await getOptions();
+      setOptions(fetchedOptions);
+    }
+
+    fetchOptions();
   }, []);
 
   const resetOrder = () => {
