@@ -1,20 +1,21 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { getPizzas, getOptions } from './services/api-service';
 import PizzaList from './components/catalog/pizza-list/pizza-list.component';
 import OrderPreview from './components/shopping-cart/order-preview/order-preview.component';
 import { addToOrder, adjustOrderAmount } from './services/order-service/order-service';
 import { ReactComponent as PizzaSliceSvg } from './assets/pizza-slice.svg';
+import OptionSelection from './components/catalog/option-selection/option-selection.component';
 
 function App() {
   const [pizzas, setPizzas] = useState([]);
   const [options, setOptions] = useState([]);
   const [order, setOrder] = useState([]);
+  const [expandedItem, setExpandedItem] = useState(undefined);
 
   useEffect(() => {
     async function fetchData() {
       const fetchedPizzas = await getPizzas();
-
       const fetchedOptions = await getOptions();
 
       setOptions(fetchedOptions);
@@ -36,6 +37,15 @@ function App() {
     setOrder(adjustOrderAmount(order, itemId, increment));
   };
 
+  const expand = useCallback((item) => {
+    setExpandedItem((currentExpandedItem) => {
+      if (currentExpandedItem && currentExpandedItem.id === item.id) {
+        return setExpandedItem(undefined);
+      }
+      return setExpandedItem(item);
+    });
+  }, []);
+
   return (
     <div className="wrapper">
       <div className="header">
@@ -45,8 +55,18 @@ function App() {
       </div>
       {pizzas && (
         <div className="catalog">
-          <PizzaList pizzas={pizzas} options={options} updateOrder={updateOrder} />
+          <PizzaList
+            pizzas={pizzas}
+            expand={expand}
+          />
         </div>
+      )}
+      {expandedItem && (
+      <OptionSelection
+        data={expandedItem}
+        options={options}
+        updateOrder={(opts, increment) => updateOrder(expandedItem, opts, increment)}
+      />
       )}
       {order && (
         <div className="order">
