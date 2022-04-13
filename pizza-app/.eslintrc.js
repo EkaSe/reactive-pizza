@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    'jest/globals': true
   },
   extends: [
     'plugin:react/recommended',
@@ -17,8 +18,12 @@ module.exports = {
   },
   plugins: [
     'react',
+    'jest'
   ],
   rules: {
-    "linebreak-style": 0
+    'linebreak-style': 0,
+    'react/react-in-jsx-scope': 0,
+    'react/prop-types': 1,
+    'react/jsx-filename-extension': 1
   },
 };

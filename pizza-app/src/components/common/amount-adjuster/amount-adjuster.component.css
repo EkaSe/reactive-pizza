@@ -1,4 +1,6 @@
 .amount-adjuster {
   display: flex;
   flex-direction: row;
+
+  font-weight: 600;
 }

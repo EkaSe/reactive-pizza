@@ -1,0 +1,20 @@
+.button-with-icon {  
+  cursor: pointer;
+  font-weight: 600;
+  background: transparent;
+}
+
+.button-with-icon svg {
+  width: 0.7em;
+  height: 0.7em;
+  padding: 0 2px;
+}
+
+.disabled {
+  color: lightgray;
+  cursor: auto;
+}
+
+.disabled svg {
+  fill: lightgray;
+}
