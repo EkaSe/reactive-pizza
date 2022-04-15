@@ -8,10 +8,14 @@ import './option-selection.component.css';
 export default function OptionSelection({ data: { id, title, price }, options, updateOrder }) {
   const [amount, setAmount] = useState(0);
 
-  const [selectedOptions, setSelectedOptions] = useState(options.map((option) => ({
-    ...option,
-    isEnabled: false,
-  })));
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  useEffect(() => {
+    setSelectedOptions(options.map((option) => ({
+      ...option,
+      isEnabled: false,
+    })));
+  }, [options]);
 
   const clearSelection = useCallback(() => {
     setSelectedOptions(options.map((option) => ({ ...option, isEnabled: false })));

@@ -4,7 +4,7 @@ import './option.component.css';
 export default function Option({
   title, price, isEnabled, removeOption, addOption,
 }) {
-  const buttonIcon = isEnabled ? '+' : '-';
+  const buttonIcon = isEnabled ? '-' : '+';
 
   return (
     <div className="option" data-testid="option-container">
