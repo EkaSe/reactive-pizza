@@ -1,5 +1,9 @@
 .option-selection {
+  margin-top: 24px;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  line-height: 20px;
 }

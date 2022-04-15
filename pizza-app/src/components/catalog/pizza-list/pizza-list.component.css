@@ -1,4 +1,7 @@
 .pizza-list {
   width: 70%;
   justify-self: center;
+
+  display: flex;
+  gap: 25px;
 }

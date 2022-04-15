@@ -19,13 +19,18 @@ export default function OrderPreview({
   }, [address, order, resetOrder]);
 
   return (
-    <div className="order-preview">
-      <h2>Order preview: </h2>
-      {order.map((item) => (
-        <div key={item.itemId}>
-          <OrderItem data={item} updateOrder={(increment) => updateOrder(item.itemId, increment)} />
-        </div>
-      ))}
+    <div>
+      <div className="section-header">Order preview</div>
+      <div className="section-container">
+        {order.map((item) => (
+          <div key={item.itemId}>
+            <OrderItem
+              data={item}
+              updateOrder={(increment) => updateOrder(item.itemId, increment)}
+            />
+          </div>
+        ))}
+      </div>
       <IconButton onClick={sendOrder} data-testid={`${id}-plus`} disabled={buyDisabled}>
         buy
       </IconButton>

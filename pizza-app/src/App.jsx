@@ -53,32 +53,37 @@ function App() {
         Reactive Pizza
         <PizzaSliceSvg />
       </div>
-      {pizzas && (
-        <div className="catalog">
-          <PizzaList
-            pizzas={pizzas}
-            expand={expand}
-          />
-        </div>
-      )}
-      {expandedItem && (
-      <OptionSelection
-        data={expandedItem}
-        options={options}
-        updateOrder={(opts, increment) => updateOrder(expandedItem, opts, increment)}
-      />
-      )}
-      {order && (
-        <div className="order">
-          <OrderPreview
-            order={order}
-            pizzas={pizzas}
-            options={options}
-            updateOrder={changeOrderAmount}
-            resetOrder={resetOrder}
-          />
-        </div>
-      )}
+      <div className="content">
+        {pizzas && (
+          <div className="section">
+            <div className="section-header">Choose your pizza</div>
+            <PizzaList
+              pizzas={pizzas}
+              expand={expand}
+            />
+          </div>
+        )}
+        {expandedItem && (
+          <div className="section">
+            <OptionSelection
+              data={expandedItem}
+              options={options}
+              updateOrder={(opts, increment) => updateOrder(expandedItem, opts, increment)}
+            />
+          </div>
+        )}
+        {order && (
+          <div className="section">
+            <OrderPreview
+              order={order}
+              pizzas={pizzas}
+              options={options}
+              updateOrder={changeOrderAmount}
+              resetOrder={resetOrder}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -34,7 +34,7 @@ export default function OptionSelection({ data: { id, title, price }, options, u
   }, [selectedOptions, clearSelection, amount]);
 
   return (
-    <div className="option-selection">
+    <div className="option-selection section-container">
       <div>{title}</div>
       <div>{`$${price}`}</div>
       {selectedOptions.map((item) => (
