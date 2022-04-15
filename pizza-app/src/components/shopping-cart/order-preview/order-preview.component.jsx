@@ -20,7 +20,7 @@ export default function OrderPreview({
 
   return (
     <div>
-      <div className="section-header">Order preview</div>
+      <div className="section-header">Check your order</div>
       <div className="section-container">
         {order.map((item) => (
           <div key={item.itemId}>
