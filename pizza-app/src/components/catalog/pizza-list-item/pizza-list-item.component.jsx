@@ -1,14 +1,18 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import IconButton from '../../common/icon-button/icon-button.component';
 import Option from '../../common/option/option.component';
 import './pizza-list-item.component.css';
 
 export default function PizzaListItem({ data: { title, price }, options, updateOrder }) {
-  const [selectedOptions, setSelectedOptions] = useState(options.map((option) => ({
-    ...option,
-    isEnabled: false,
-  })));
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  useEffect(() => {
+    setSelectedOptions(options.map((option) => ({
+      ...option,
+      isEnabled: false,
+    })));
+  }, [options]);
 
   const setOptionEnabled = useCallback((optionId, isEnabled) => {
     setSelectedOptions((opts) => opts.map((option) => ((option.id === optionId)
