@@ -6,7 +6,7 @@ import OrderPreview from './components/shopping-cart/order-preview/order-preview
 import { addToOrder, adjustOrderAmount } from './services/order-service/order-service';
 import { ReactComponent as PizzaSliceSvg } from './assets/pizza-slice.svg';
 import OptionSelection from './components/catalog/option-selection/option-selection.component';
-import Address from './components/address/address.component';
+import UserInfo from './components/address/address.component';
 
 function App() {
   const [pizzas, setPizzas] = useState([]);
@@ -91,7 +91,7 @@ function App() {
           </div>
         )}
         <div className="section">
-          <Address />
+          <UserInfo />
         </div>
       </div>
     </div>

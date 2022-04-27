@@ -2,6 +2,9 @@
   --text-main-color: #D95B33;
   --accent-color: #DB7B5D;
   --border-color: #E3E3E3;
+  --placeholder-color: #C4C4C4;
+  --error-color: red;
+  --error-transparent-color: rgba(255, 0, 0, 0.3);
 
   text-align: center;
   font-family: 'Inter';
