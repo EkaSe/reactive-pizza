@@ -1,8 +1,6 @@
 import React from 'react';
 import './amount-adjuster.component.css';
 import PropTypes from 'prop-types';
-import { ReactComponent as MinusSvg } from '../../../assets/minus-svgrepo-com.svg';
-import { ReactComponent as PlusSvg } from '../../../assets/plus-svgrepo-com.svg';
 import IconButton from '../icon-button/icon-button.component';
 
 export default function AmountAdjuster({
@@ -15,14 +13,14 @@ export default function AmountAdjuster({
         disabled={amount === 0}
         data-testid={`${id}-minus`}
       >
-        <MinusSvg />
+        -
       </IconButton>
-      <span data-testid={`${id}-amount`}>{amount}</span>
+      <span data-testid={`${id}-amount`} className="amount">{amount}</span>
       <IconButton
         onClick={onIncrement}
         data-testid={`${id}-plus`}
       >
-        <PlusSvg />
+        +
       </IconButton>
     </div>
   );

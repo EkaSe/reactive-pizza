@@ -1,5 +1,28 @@
 .pizza-container {
+  width: 120px;
+  height: 150px;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  background-color: white;
+  border: 1px solid var(--border-color);
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.pizza-container svg {
+  margin: auto;
+}
+
+.pizza-info {
+  line-height: 30px;
+
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content :space-around;
+
+  background-color: var(--accent-color);
+  border-radius: 0px 0px 4px 4px;
+
+  color: white;
+  font-size: 12px;
 }
